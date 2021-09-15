@@ -66,6 +66,8 @@ THE EDITOR
 
 	background: #ddd;
 	overflow-y: scroll;
+	
+	font-family: "B Koodak";
 }
 #editor{
 	margin: 40px 40px 40px 20px;
@@ -86,7 +88,7 @@ THE EDITOR
 }
 #editor textarea{
 
-	font-family: 'OpenSansEmoji', Helvetica, Arial, sans-serif;
+	font-family: 'OpenSansEmoji', BKoodak, Helvetica, Arial, sans-serif;
     font-weight: 100;
     font-size: 16px;
 
