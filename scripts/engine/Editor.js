@@ -26,7 +26,7 @@ Editor.create = function(){
 	///// STATES DOM /////
 	//////////////////////
 
-	var title = Editor.createTitle("<span>THINGS</span> WITH RULES");
+	var title = Editor.createTitle("قوانین <span>ایموجی ها</span>");
 	Editor.dom.appendChild(title);
 
 	Editor.statesDOM = document.createElement("div");
@@ -36,7 +36,7 @@ Editor.create = function(){
 	// Button - Add a state!
 	var addState = document.createElement("div");
 	addState.className = "editor_fancy_button";
-	addState.innerHTML = "<span>+</span>make new thing";
+	addState.innerHTML = "<span>+</span>ساخت ایموجی جدید";
 	addState.onclick = function(){
 
 		// New state config
@@ -71,7 +71,7 @@ Editor.create = function(){
 	///// WORLD DOM /////
 	/////////////////////
 
-	var title = Editor.createTitle("THE <span>WORLD</span>");
+	var title = Editor.createTitle("قوانین <span>جهان</span>");
 	Editor.dom.appendChild(title);
 
 	Editor.worldDOM = document.createElement("div");
@@ -94,7 +94,7 @@ Editor.create = function(){
 	var undoChanges = document.createElement("div");
 	undoChanges.className = "editor_fancy_button";
 	undoChanges.style.marginBottom = "20px";
-	undoChanges.innerHTML = "<span style='font-size:25px; line-height:40px;'>⟳</span>undo all changes";
+	undoChanges.innerHTML = "<span style='font-size:25px; line-height:40px;'>⟳</span>بازگردانی به حالت اولیه";
 	undoChanges.onclick = function(){
 		publish("/meta/reset");
 		Model.returnToBackup();
@@ -111,7 +111,7 @@ Editor.create = function(){
 		var saveChanges = document.createElement("div");
 		saveChanges.className = "editor_fancy_button";
 		saveChanges.id = "save_changes";
-		saveChanges.innerHTML = "<span style='font-size:30px; line-height:40px'>★</span>save your model";
+		saveChanges.innerHTML = "<span style='font-size:30px; line-height:40px'>★</span>ذخیره مدل";
 		saveChanges.onclick = function(){
 			saveLabel.innerHTML = "saving...";
 			embedLabel.innerHTML = "...";
@@ -124,7 +124,7 @@ Editor.create = function(){
 		// Save your changes, label & link, label & embed
 		
 		// save label
-		var saveLabel = Editor.createLabel("when you save your model, you'll get a link here:")
+		var saveLabel = Editor.createLabel("وقتی مدل رو ذخیره کنید، لینکش میاد اینجا:")
 		saveLabel.style.display = "block";
 		saveLabel.style.margin = "10px 0";
 		Editor.dom.appendChild(saveLabel);
@@ -140,20 +140,20 @@ Editor.create = function(){
 		Editor.dom.appendChild(saveLink);
 
 		// embed label 
-		var embedLabel = Editor.createLabel("and an embed code here:")
-		embedLabel.style.display = "block";
-		embedLabel.style.margin = "10px 0";
-		Editor.dom.appendChild(embedLabel);
+		////var embedLabel = Editor.createLabel("and an embed code here:")
+		////embedLabel.style.display = "block";
+		////embedLabel.style.margin = "10px 0";
+		////Editor.dom.appendChild(embedLabel);
 
 		// embed link
-		var embedLink = document.createElement("input");
-		embedLink.type = "text";
-		embedLink.className = "editor_save_link";
-		embedLink.setAttribute("readonly",true);
-		embedLink.onclick = function(){
-			embedLink.select();
-		};
-		Editor.dom.appendChild(embedLink);
+		////var embedLink = document.createElement("input");
+		////embedLink.type = "text";
+		////embedLink.className = "editor_save_link";
+		////embedLink.setAttribute("readonly",true);
+		////embedLink.onclick = function(){
+		////	embedLink.select();
+		////};
+		////Editor.dom.appendChild(embedLink);
 
 		// divider
 		Editor.dom.appendChild(document.createElement("br"));
@@ -163,45 +163,43 @@ Editor.create = function(){
 		// on save success
 		subscribe("/save/success",function(link){
 
-			saveLabel.innerHTML = "here you go! <a href='"+link+"' target='_blank'>(open in new tab)</a> (shrink link with <a href='https://tinyurl.com/' target='_blank'>TinyURL</a>)";
+			saveLabel.innerHTML = "حله! <a href='"+link+"' target='_blank'>(باز کردن در صفحه جدید)</a> (کوتاه کردن لینک با <a href='https://tinyurl.com/' target='_blank'>TinyURL</a>)";
 			saveLink.value = link;
 			saveLink.select();
-			embedLabel.innerHTML = "to embed it, paste this code in your site:";
+			////embedLabel.innerHTML = "to embed it, paste this code in your site:";
 
-			var width = 800;
-			var height = Math.round(width/(document.body.clientWidth/document.body.clientHeight));
-			embedLink.value = '<iframe width="'+width+'" height="'+height+'" src="'+link+'" frameborder="0"></iframe>';
+			////var width = 800;
+			////var height = Math.round(width/(document.body.clientWidth/document.body.clientHeight));
+			////embedLink.value = '<iframe width="'+width+'" height="'+height+'" src="'+link+'" frameborder="0"></iframe>';
 			
 		});
 
 		// Export your data
-		var exportModel = document.createElement("div");
-		exportModel.className = "editor_fancy_button";
-		exportModel.id = "save_changes";
-		exportModel.innerHTML = "<span style='font-size:25px; line-height:35px; font-family:monospace'>{}</span>export model";
-		exportModel.onclick = function(){
-			window.open("data:text/json;charset=utf-8,"+JSON.stringify(Model.data));
-		};
-		Editor.dom.appendChild(exportModel);
+		////var exportModel = document.createElement("div");
+		////exportModel.className = "editor_fancy_button";
+		////exportModel.id = "save_changes";
+		////exportModel.innerHTML = "<span style='font-size:25px; line-height:35px; font-family:monospace'>{}</span>export model";
+		////exportModel.onclick = function(){
+		////	window.open("data:text/json;charset=utf-8,"+JSON.stringify(Model.data));
+		////};
+		////Editor.dom.appendChild(exportModel);
 
 		// export label 
-		var exportLabel = Editor.createLabel(
-			"This is for those of you who want to save your sim to your own computertron! "+
-			"<a href='https://github.com/ncase/sim#how-to-run-this-on-your-own-computertron' target='_blank'>[How To Do That]</a> "+
-			"Click the above button to open your sim's data in a new tab. "+
-			"Save it as <span style='font-family:monospace'>[your sim name].json</span>. "+
-			"(Remember the \".json\"! It's important!)"
-		);
-		exportLabel.style.display = "block";
-		exportLabel.style.margin = "10px 0";
-		Editor.dom.appendChild(exportLabel);
+		////var exportLabel = Editor.createLabel(
+		////	"This is for those of you who want to save your sim to your own computertron! "+
+		////	"<a href='https://github.com/ncase/sim#how-to-run-this-on-your-own-computertron' target='_blank'>[How To Do That]</a> "+
+		////	"Click the above button to open your sim's data in a new tab. "+
+		////	"Save it as <span style='font-family:monospace'>[your sim name].json</span>. "+
+		////	"(Remember the \".json\"! It's important!)"
+		////);
+		////exportLabel.style.display = "block";
+		////exportLabel.style.margin = "10px 0";
+		////Editor.dom.appendChild(exportLabel);
 
 		// CREDITS
 		var creditsLabel = Editor.createLabel(`
-			Made by <a href='https://ncase.me/' target='_blank'>Nicky Case</a>,
-			with the 💖 of their supporters
-			<a href='https://www.patreon.com/ncase' target='_blank'>on Patreon</a>~
-			p.s: <a href='https://github.com/ncase/sim' target='_blank'>open source!</a>
+			برگرفته از شبیه ساز Nicky Case,
+			راضیه کوچک زاده - تفکر سیستمی 1400
 		`);
 		creditsLabel.style.display = "block";
 		creditsLabel.style.margin = "30px 0";
