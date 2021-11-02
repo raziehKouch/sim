@@ -124,7 +124,7 @@ Editor.create = function(){
 		// Save your changes, label & link, label & embed
 		
 		// save label
-		var saveLabel = Editor.createLabel("وقتی مدل رو ذخیره کنید، لینکش میاد اینجا:")
+		var saveLabel = Editor.createLabel(":وقتی مدل رو ذخیره کنید، لینکش میاد اینجا")
 		saveLabel.style.display = "block";
 		saveLabel.style.margin = "10px 0";
 		Editor.dom.appendChild(saveLabel);
@@ -198,7 +198,8 @@ Editor.create = function(){
 
 		// CREDITS
 		var creditsLabel = Editor.createLabel(`
-			برگرفته از شبیه ساز Nicky Case,
+			Nicky Case برگرفته از شبیه ساز
+			<br>
 			راضیه کوچک زاده - تفکر سیستمی 1400
 		`);
 		creditsLabel.style.display = "block";
